@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradise Voyage - Azazga</title>
+    <link rel="icon" type="image/png" href="photos/logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --secondary: #10B981;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .destination-card {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        
+        .destination-card img {
+            transition: transform 0.5s ease;
+        }
+        
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .contact-form input, .contact-form textarea {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid #E5E7EB;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-bottom-color: var(--primary);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <span class="text-2xl font-bold text-blue-500">Paradise</span>
+                        <span class="text-2xl font-bold text-emerald-500">Voyage</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-500 py-2">Accueil</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-500 py-2">À propos</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-blue-500 py-2">Nos services</a>
+                    <a href="#destinations" class="nav-link text-gray-700 hover:text-blue-500 py-2">Villes populaires</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-500 py-2">Contact</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-4 space-y-1">
+                    <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Accueil</a>
+                    <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">À propos</a>
+                    <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Nos services</a>
+                    <a href="#destinations" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Villes populaires</a>
+                    <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center text-center text-white animate-fade-in">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-slide-in">Découvrez le monde avec <span class="text-blue-400">Paradise</span> <span class="text-emerald-400">Voyage</span></h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Votre agence de voyage de confiance pour des expériences inoubliables à travers le globe.</p>
+            <a href="#services" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block transform hover:scale-105">
+                Nos services
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">À propos de nous</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Paradise Voyage est une agence de voyage réputée offrant des services premium depuis plus de 15 ans.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-fade-in">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Us" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="md:w-1/2 animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Notre histoire</h3>
+                    <p class="text-gray-600 mb-6">Fondée en 2008, Paradise Voyage a commencé comme une petite agence locale et s'est rapidement développée pour devenir l'une des agences de voyage les plus fiables de la région. Notre passion pour les voyages et notre engagement envers l'excellence du service client nous ont permis de créer des expériences de voyage mémorables pour des milliers de clients.</p>
+                    
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Notre mission</h3>
+                    <p class="text-gray-600 mb-6">Nous nous engageons à fournir des services de voyage exceptionnels en combinant expertise, personnalisation et attention aux détails. Notre objectif est de rendre chaque voyage aussi fluide et agréable que possible, en nous adaptant aux besoins uniques de chaque client.</p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center bg-blue-50 px-4 py-2 rounded-full">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-500"></i>
+                            </div>
+                            <span class="text-blue-800 font-medium">15 ans d'expérience</span>
+                        </div>
+                        <div class="flex items-center bg-emerald-50 px-4 py-2 rounded-full">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-users text-emerald-500"></i>
+                            </div>
+                            <span class="text-emerald-800 font-medium">+10,000 clients</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos services</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Découvrez notre gamme complète de services de voyage conçus pour répondre à tous vos besoins.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl animate-fade-in">
+                    <div class="bg-blue-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-hotel text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Réservation d'hôtels</h3>
+                    <p class="text-gray-600 mb-4">Nous proposons une large sélection d'hôtels à travers le monde, des établissements économiques aux resorts 5 étoiles, pour répondre à tous les budgets et préférences.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="bg-emerald-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-ticket-alt text-emerald-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Billetterie</h3>
+                    <p class="text-gray-600 mb-4">Obtenez les meilleurs prix sur les billets d'avion, de train et de bus. Notre système de réservation intelligent trouve les options les plus avantageuses pour votre voyage.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="bg-purple-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-kaaba text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Omra</h3>
+                    <p class="text-gray-600 mb-4">Organisation complète de votre pèlerinage Omra avec des forfaits incluant vols, hébergement près des lieux saints, transport et assistance sur place.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl animate-fade-in">
+                    <div class="bg-yellow-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-globe-americas text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Voyages organisés</h3>
+                    <p class="text-gray-600 mb-4">Des circuits tout compris soigneusement planifiés vers les destinations les plus prisées, avec guides professionnels et activités incluses.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="bg-red-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-passport text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Rendez-vous visa</h3>
+                    <p class="text-gray-600 mb-4">Assistance complète pour l'obtention de visas, y compris prise de rendez-vous, préparation des documents et conseils personnalisés.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="bg-green-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-shield-alt text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Assurance voyage</h3>
+                    <p class="text-gray-600 mb-4">Protégez votre voyage avec nos assurances complètes couvrant annulation, maladie, accidents et perte de bagages.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-xl col-span-1 md:col-span-2 lg:col-span-3 mx-auto max-w-2xl animate-fade-in">
+                    <div class="bg-indigo-100 p-4 rounded-full inline-block mb-6">
+                        <i class="fas fa-language text-indigo-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Séjours linguistiques</h3>
+                    <p class="text-gray-600 mb-4">Programmes d'immersion linguistique à l'étranger combinant cours de langue, hébergement en famille d'accueil ou résidence, et activités culturelles.</p>
+                    <a href="#contact" class="text-blue-500 font-medium inline-flex items-center">En savoir plus <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations Section -->
+    <section id="destinations" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Villes les plus visitées</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Découvrez nos destinations phares qui captivent nos voyageurs année après année.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Destination 1 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in">
+                    <img src="photos/paris.jpg" alt="Paris" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Paris, France</h3>
+                        <p class="text-sm opacity-80">La ville lumière</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.1s;">
+                    <img src="photos/newyork.jpg" alt="New York" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">New York, USA</h3>
+                        <p class="text-sm opacity-80">La ville qui ne dort jamais</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.2s;">
+                    <img src="photos/tokyo (2).jpg" alt="Tokyo" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Tokyo, Japon</h3>
+                        <p class="text-sm opacity-80">Métropole futuriste</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 4 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.3s;">
+                    <img src="photos/dubai.jpg" alt="Dubai" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Dubai, Émirats</h3>
+                        <p class="text-sm opacity-80">Oasis de modernité</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 5 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in">
+                    <img src="photos/italie.jpg" alt="Rome" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Rome, Italie</h3>
+                        <p class="text-sm opacity-80">La ville éternelle</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 6 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.1s;">
+                    <img src="photos/bali.jpg" alt="Bali" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Bali, Indonésie</h3>
+                        <p class="text-sm opacity-80">Île des dieux</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 7 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.2s;">
+                    <img src="photos/marakkech.jpg" alt="Marrakech" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Marrakech, Maroc</h3>
+                        <p class="text-sm opacity-80">Perle du sud</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+                
+                <!-- Destination 8 -->
+                <div class="destination-card group relative overflow-hidden rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.3s;">
+                    <img src="photos/maldives.jpg" alt="Maldives" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold mb-1">Maldives</h3>
+                        <p class="text-sm opacity-80">Paradis tropical</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                        <a href="#contact" class="bg-white text-blue-500 font-bold py-2 px-6 rounded-full">Visiter</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                    Voir toutes nos destinations
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Témoignages</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Découvrez ce que nos clients disent de leurs expériences avec Paradise Voyage.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Notre voyage à Bali organisé par Paradise Voyage était tout simplement parfait. Tout était bien planifié et nous avons pu profiter pleinement de nos vacances sans aucun souci."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sophia kardi</h4>
+                            <p class="text-gray-500 text-sm">Voyage à Bali</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"L'équipe de Paradise Voyage a rendu notre Omra inoubliable. Leur attention aux détails et leur professionnalisme ont fait toute la différence. Je les recommande vivement."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Ahmed Benali</h4>
+                            <p class="text-gray-500 text-sm">Pèlerinage Omra</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Notre séjour linguistique en Angleterre pour notre fils était parfaitement organisé. Il a beaucoup progressé en anglais tout en se faisant des amis du monde entier. Merci Paradise Voyage!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">zahia sadi</h4>
+                            <p class="text-gray-500 text-sm">Séjour linguistique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contactez-nous</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Prêt à planifier votre prochain voyage? Contactez notre équipe pour des conseils personnalisés.</p>
+            </div>
+            <!--envoie de la demande-->
+            <div class="flex flex-col lg:flex-row gap-12">
+              <form id="quoteForm" class="contact-form space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="firstname" class="block text-gray-700 font-medium mb-2">Prénom</label>
+      <input type="text" id="firstname" name="firstname" class="w-full px-4 py-3 border-0 border-b-2 focus:outline-none focus:border-blue-500 transition duration-300" required>
+    </div>
+    <div>
+      <label for="lastname" class="block text-gray-700 font-medium mb-2">Nom</label>
+      <input type="text" id="lastname" name="lastname" class="w-full px-4 py-3 border-0 border-b-2 focus:outline-none focus:border-blue-500 transition duration-300" required>
+    </div>
+  </div>
+
+  <div>
+    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+    <input type="email" id="email" name="email" class="w-full px-4 py-3 border-0 border-b-2 focus:outline-none focus:border-blue-500 transition duration-300" required>
+  </div>
+
+  <div>
+    <label for="phone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
+    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border-0 border-b-2 focus:outline-none focus:border-blue-500 transition duration-300" required>
+  </div>
+
+  <div>
+    <label for="service" class="block text-gray-700 font-medium mb-2">Service intéressé</label>
+    <select id="service" name="service" class="w-full px-4 py-3 border-0 border-b-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-white" required>
+      <option value="">Sélectionnez un service</option>
+      <option value="hotel">Réservation d'hôtels</option>
+      <option value="tickets">Billetterie</option>
+      <option value="omra">Omra</option>
+      <option value="tours">Voyages organisés</option>
+      <option value="visa">Rendez-vous visa</option>
+      <option value="insurance">Assurance voyage</option>
+      <option value="language">Séjours linguistiques</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+    <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border-0 border-b-2 focus:outline-none focus:border-blue-500 transition duration-300"></textarea>
+  </div>
+
+  <div class="flex justify-end">
+    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+      Envoyer la demande
+    </button>
+  </div>
+</form>       
+                <!-- Contact Info -->
+                <div class="lg:w-1/2 animate-fade-in" style="animation-delay: 0.1s;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Nos coordonnées</h3>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">Heures d'ouverture</h4>
+                        <ul class="space-y-2">
+                            <li class="flex justify-between">
+                                <span class="text-gray-600">Dimanche - Samedi</span>
+                                <span class="font-medium">08:30 - 16:30</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-600">Samedi</span>
+                                <span class="font-medium">08:30 - 16:30</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-600">Vendredi</span>
+                                <span class="font-medium">Fermé</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Adresse</h4>
+                                <p class="text-gray-600">Arret Sademi centre commercial Haddag 1er sous-sol ,Azazga, Tizi Ouzou </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-emerald-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-emerald-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Téléphone</h4>
+                                <p class="text-gray-600">+213 774 17 14 59</p>
+                                <p class="text-gray-600">+213 550 05 92 86</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">paradisevoyage15@gmailcom</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">Suivez-nous</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/profile.php?id=61573092727559" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/paradisevoyage15/" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@paradisevoyage1?lang=fr" class="bg-red-500 text-white p-3 rounded-full hover:bg-red-600 transition duration-300">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://www.google.com/maps/place/Paradise+Voyage/@36.7431842,4.3702246,17.97z/data=!4m6!3m5!1s0x128da785f23b9cf3:0x59fa0142d6c92b86!8m2!3d36.7430498!4d4.3701692!16s%2Fg%2F11x7633cll?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D" class="bg-green-500 text-white p-3 rounded-full hover:bg-red-600 transition duration-300">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex items-center mb-6">
+                        <span class="text-2xl font-bold text-blue-400">Paradise</span>
+                        <span class="text-2xl font-bold text-emerald-400">Voyage</span>
+                    </a>
+                    <p class="text-gray-400">Votre agence de voyage de confiance pour des expériences inoubliables à travers le globe.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Accueil</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">À propos</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#destinations" class="text-gray-400 hover:text-white transition duration-300">Destinations</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Réservation d'hôtels</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Billetterie</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Omra</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Voyages organisés</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Séjours linguistiques</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Arret Sademi centre commercial Haddag 1er sous-sol ,Azazga, Tizi Ouzou</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">+213 774 17 14 59<br>+213 550 05 92 86 </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">paradisevoyage15@gmailcom</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Paradise Voyage. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="https://www.facebook.com/profile.php?id=61573092727559" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/paradisevoyage15/" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@paradisevoyage1?lang=fr" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                mobileMenu.classList.remove('open');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const firstname = document.getElementByI
+$0d('firstname').value;
+                const lastname = document.getElementById('lastname').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would typically send the data to a server
+                // For this example, we'll just show an alert
+                alert(`Merci ${firstname} ${lastname} pour votre demande concernant le service ${service}. Nous vous contacterons bientôt au ${phone} ou à ${email}.`);
+                
+                // Reset form
+                this.reset();
+            });
+        }
+    </script>
+<script>
+document.getElementById('quoteForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const data = {
+    firstname: document.getElementById('firstname').value,
+    lastname: document.getElementById('lastname').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    service: document.getElementById('service').value,
+    message: document.getElementById('message').value
+  };
+
+  try {
+    const response = await fetch('http://localhost:3000/api/devis', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    alert(result.message || "Demande envoyée !");
+    document.getElementById('quoteForm').reset(); // vider le formulaire
+  } catch (error) {
+    console.error('Erreur lors de l’envoi du formulaire :', error);
+    alert("Erreur lors de l’envoi du formulaire.");
+  }
+});
+</script>
+<script src="./contact.js" defer></script>
+</body>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin paradise v - Demandes de devis</title>
+  <script defer src="admin.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f2f5;
+    }
+    .login, .admin {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="password"], button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    #togglePassword {
+      margin-top: 10px;
+      background: none;
+      border: none;
+      color: blue;
+      cursor: pointer;
+    }
+    .devis-card {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .devis-card strong {
+      display: inline-block;
+      width: 120px;
+    }
+    .logout-btn {
+      margin-top: 20px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login" id="loginForm">
+    <h2>Connexion Admin</h2>
+    <input type="password" id="password" placeholder="Mot de passe admin" />
+    <button id="loginBtn">Se connecter</button>
+    <button id="togglePassword">Afficher le mot de passe</button>
+  </div>
+
+  <div class="admin" id="adminPanel" style="display:none;">
+    <h2>📋 Liste des Devis Reçus</h2>
+    <div id="devisContainer"></div>
+    <button class="logout-btn" id="logoutBtn">Déconnexion</button>
+  </div>
+</body>
+</html>
+
+

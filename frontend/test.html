@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Devis</title>
+</head>
+<body>
+  <h1>Tester l'envoi de devis</h1>
+
+  <form id="quoteForm">
+    <label>Nom : <input type="text" id="nom" name="nom" required></label><br><br>
+    <label>Prénom : <input type="text" id="prenom" name="prenom" required></label><br><br>
+    <label>Email : <input type="email" id="email" name="email" required></label><br><br>
+    <label>Téléphone : <input type="text" id="telephone" name="telephone" required></label><br><br>
+    <label>Service :
+      <select id="service" name="service" required>
+        <option value="hotel">Réservation d’hôtel</option>
+        <option value="billetterie">Billetterie</option>
+        <option value="voyage">Voyage organisé</option>
+        <option value="visa">Rendez-vous visa</option>
+        <option value="assurance">Assurance voyage</option>
+        <option value="linguistique">Séjour linguistique</option>
+        <option value="omra">Omra</option>
+      </select>
+    </label><br><br>
+    <label>Message :<br>
+      <textarea id="message" name="message" rows="5" cols="30" required></textarea>
+    </label><br><br>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <script>
+    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+  firstname: document.getElementById('prenom').value,
+  lastname: document.getElementById('nom').value,
+  phone: document.getElementById('telephone').value,
+  email: document.getElementById('email').value,
+  service: document.getElementById('service').value,
+  message: document.getElementById('message').value
+};
+
+
+      try {
+        const response = await fetch('https://paradise-backend-g9x5.onrender.com/api/devis', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('✅ Demande envoyée avec succès !');
+          document.getElementById('quoteForm').reset();
+        } else {
+          alert('❌ Erreur : ' + result.message);
+        }
+      } catch (error) {
+        alert('❌ Une erreur est survenue : ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
