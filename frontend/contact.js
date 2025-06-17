@@ -1,39 +1,33 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("quoteForm");
-
-  if (!form) return;
-
-  form.addEventListener("submit", async function (e) {
+document.getElementById("quoteForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const data = {
-      firstname: document.getElementById("firstname").value,
-      lastname: document.getElementById("lastname").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      service: document.getElementById("service").value,
-      message: document.getElementById("message").value,
-    };
+    const prenom = document.getElementById("prenom").value.trim();
+    const nom = document.getElementById("nom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const telephone = document.getElementById("telephone").value.trim();
+    const service = document.getElementById("service").value.trim();
+    const message = document.getElementById("message").value.trim();
 
     try {
-      const response = await fetch("/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+        const response = await fetch("https://paradise-backend-g9x5.onrender.com/api/quote", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ prenom, nom, email, telephone, service, message })
+        });
 
-      if (response.ok) {
-        alert("Votre demande a été envoyée avec succès !");
-        form.reset();
-      } else {
-        alert("Une erreur est survenue. Veuillez réessayer.");
-      }
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Demande envoyée avec succès !");
+            document.getElementById("quoteForm").reset();
+        } else {
+            alert("Erreur lors de l'envoi : " + (data.error || "Erreur inconnue"));
+        }
     } catch (error) {
-      console.error("Erreur lors de l'envoi :", error);
-      alert("Une erreur réseau est survenue.");
+        console.error("Erreur:", error);
+        alert("Une erreur est survenue. Veuillez réessayer.");
     }
-  });
 });
 
