@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradise Voyage - Azazga</title>
+    <meta name="description" content="Agence de voyage à Azazga - Réservation, billetterie, visa, assurance, Omra, séjours linguistiques.">
     <link rel="icon" type="image/png" href="photos/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -733,60 +734,8 @@
         
         // Check on scroll
         window.addEventListener('scroll', animateOnScroll);
-        
-        // Form submission
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const firstname = document.getElementByI
-$0d('firstname').value;
-                const lastname = document.getElementById('lastname').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const service = document.getElementById('service').value;
-                const message = document.getElementById('message').value;
-                
-                // Here you would typically send the data to a server
-                // For this example, we'll just show an alert
-                alert(`Merci ${firstname} ${lastname} pour votre demande concernant le service ${service}. Nous vous contacterons bientôt au ${phone} ou à ${email}.`);
-                
-                // Reset form
-                this.reset();
-            });
-        }
+            
     </script>
-<script>
-document.getElementById('quoteForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const data = {
-    firstname: document.getElementById('firstname').value,
-    lastname: document.getElementById('lastname').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    service: document.getElementById('service').value,
-    message: document.getElementById('message').value
-  };
-
-  try {
-    const response = await fetch('https://paradise-backend-g9x5.onrender.com/api/devis', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    const result = await response.json();
-    alert(result.message || "Demande envoyée !");
-    document.getElementById('quoteForm').reset(); // vider le formulaire
-  } catch (error) {
-    console.error('Erreur lors de l’envoi du formulaire :', error);
-    alert("Erreur lors de l’envoi du formulaire.");
-  }
-});
-</script>
 <script src="./contact.js" defer></script>
 </body>
 </body>

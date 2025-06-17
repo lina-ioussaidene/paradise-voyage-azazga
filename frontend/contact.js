@@ -1,33 +1,39 @@
-document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("quoteForm");
 
-  const data = {
-    prenom: document.getElementById('firstname').value,
-    nom: document.getElementById('lastname').value,
-    email: document.getElementById('email').value,
-    telephone: document.getElementById('phone').value,
-    service: document.getElementById('service').value,
-    message: document.getElementById('message').value
-  };
+  if (!form) return;
 
-  try {
-    const response = await fetch('https://paradise-backend-g9x5.onrender.com/api/devis', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-    const result = await response.json();
+    const data = {
+      firstname: document.getElementById("firstname").value,
+      lastname: document.getElementById("lastname").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      service: document.getElementById("service").value,
+      message: document.getElementById("message").value,
+    };
 
-    if (response.ok) {
-      alert('✅ Demande envoyée avec succès !');
-      document.getElementById('quoteForm').reset();
-    } else {
-      alert('❌ Erreur : ' + result.message);
+    try {
+      const response = await fetch("/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("Votre demande a été envoyée avec succès !");
+        form.reset();
+      } else {
+        alert("Une erreur est survenue. Veuillez réessayer.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi :", error);
+      alert("Une erreur réseau est survenue.");
     }
-  } catch (error) {
-    alert('❌ Une erreur est survenue : ' + error.message);
-  }
+  });
 });
+
