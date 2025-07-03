@@ -9,7 +9,7 @@ document.getElementById("quoteForm").addEventListener("submit", async function (
     const message = document.getElementById("message").value.trim();
 
     try {
-        const response = await fetch("https://paradise-backend-g9x5.onrender.com/api/quote", {
+        const response = await fetch("https://paradise-backend-g9x5.onrender.com/api/devis", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
