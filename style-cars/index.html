@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style Cars — Modern Car Dealership</title>
+  <meta name="description" content="Style Cars — premium car dealership with a curated inventory, great financing, and white-glove service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav-container">
+      <a class="brand" href="#top" aria-label="Style Cars home">
+        <img src="assets/logo.svg" alt="Style Cars logo" class="logo">
+        <span class="brand-text">Style Cars</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <ul class="nav-list desktop-only">
+          <li><a href="#inventory">Inventory</a></li>
+          <li><a href="#features">Why Us</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact" class="btn btn-primary">Contact</a></li>
+        </ul>
+        <div id="mobile-menu" class="mobile-drawer" hidden>
+          <ul class="nav-list mobile">
+            <li><a href="#inventory">Inventory</a></li>
+            <li><a href="#features">Why Us</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact" class="btn btn-primary">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 class="headline reveal">
+            Drive in <span class="accent">Style</span>.
+          </h1>
+          <p class="subhead reveal" style="--delay:0.1s">
+            Curated performance and luxury vehicles. Transparent pricing. White‑glove experience.
+          </p>
+          <div class="cta-row reveal" style="--delay:0.2s">
+            <a href="#inventory" class="btn btn-primary">Browse Inventory</a>
+            <a href="#contact" class="btn btn-ghost">Book a Test Drive</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="--delay:0.15s">
+          <img src="assets/placeholder-hero.svg" alt="Sleek sports car" class="hero-image">
+        </div>
+      </div>
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <section class="inventory section" id="inventory">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Featured Inventory</h2>
+          <p class="section-subtitle">Hand‑picked vehicles ready to drive today</p>
+        </div>
+        <div class="grid inventory-grid">
+          <!-- Card 1 -->
+          <article class="car-card tilt reveal">
+            <div class="media">
+              <img src="assets/placeholder-1.svg" alt="Red performance coupe">
+              <span class="badge">2023</span>
+            </div>
+            <div class="content">
+              <h3>Falcon GT-R</h3>
+              <p class="meta">3.0L Twin‑Turbo • AWD • 7,500 mi</p>
+              <div class="price-row">
+                <span class="price">$89,900</span>
+                <a href="#contact" class="btn btn-small">Enquire</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 2 -->
+          <article class="car-card tilt reveal" style="--delay:0.05s">
+            <div class="media">
+              <img src="assets/placeholder-2.svg" alt="Luxury black sedan">
+              <span class="badge">2022</span>
+            </div>
+            <div class="content">
+              <h3>Regal S9</h3>
+              <p class="meta">Hybrid • RWD • 14,200 mi</p>
+              <div class="price-row">
+                <span class="price">$54,300</span>
+                <a href="#contact" class="btn btn-small">Enquire</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 3 -->
+          <article class="car-card tilt reveal" style="--delay:0.1s">
+            <div class="media">
+              <img src="assets/placeholder-3.svg" alt="White electric SUV">
+              <span class="badge">2024</span>
+            </div>
+            <div class="content">
+              <h3>Volt X</h3>
+              <p class="meta">Dual‑Motor EV • AWD • 1,100 mi</p>
+              <div class="price-row">
+                <span class="price">$61,750</span>
+                <a href="#contact" class="btn btn-small">Enquire</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="center mt-lg">
+          <a href="#contact" class="btn btn-ghost">See Full Inventory</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Why Style Cars</h2>
+          <p class="section-subtitle">Where confidence meets craftsmanship</p>
+        </div>
+        <div class="grid features-grid">
+          <div class="feature-card reveal">
+            <div class="icon">
+              <span class="dot"></span>
+            </div>
+            <h3>Curated Inventory</h3>
+            <p>Only the top 5% make the cut after a 150‑point inspection.</p>
+          </div>
+          <div class="feature-card reveal" style="--delay:0.05s">
+            <div class="icon">
+              <span class="dot"></span>
+            </div>
+            <h3>Transparent Pricing</h3>
+            <p>Clear numbers. No surprises. Financing tailored to you.</p>
+          </div>
+          <div class="feature-card reveal" style="--delay:0.1s">
+            <div class="icon">
+              <span class="dot"></span>
+            </div>
+            <h3>White‑Glove Service</h3>
+            <p>Concierge test drives and nationwide delivery options.</p>
+          </div>
+          <div class="feature-card reveal" style="--delay:0.15s">
+            <div class="icon">
+              <span class="dot"></span>
+            </div>
+            <h3>Warranty & Support</h3>
+            <p>Extended coverage and lifetime service reminders.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials section" id="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">What Drivers Say</h2>
+          <p class="section-subtitle">Real stories from our customers</p>
+        </div>
+        <div class="carousel" data-carousel>
+          <button class="carousel-btn prev" aria-label="Previous review" data-prev><span></span></button>
+          <div class="carousel-track" data-track>
+            <figure class="testimonial-card">
+              <blockquote>Effortless experience and the car was immaculate. Best dealership I’ve worked with.</blockquote>
+              <figcaption>— Jordan M.</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>They found the exact spec I wanted and delivered it to my door. 10/10.</blockquote>
+              <figcaption>— Priya K.</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>Upfront pricing and no pressure. The process was actually enjoyable.</blockquote>
+              <figcaption>— Lucas E.</figcaption>
+            </figure>
+          </div>
+          <button class="carousel-btn next" aria-label="Next review" data-next><span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="section-subtitle">Questions or ready to drive? We’re here to help.</p>
+        </div>
+        <form class="contact-form" netlify>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your full name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="(555) 000‑0000">
+            </div>
+            <div class="field">
+              <label for="interest">Interested In</label>
+              <select id="interest" name="interest">
+                <option>Falcon GT-R</option>
+                <option>Regal S9</option>
+                <option>Volt X</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="How can we help?"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <p class="form-note">Or call us at <a href="tel:+10000000000">(000) 000‑0000</a></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top" aria-label="Style Cars home">
+        <img src="assets/logo.svg" alt="Style Cars logo" class="logo">
+        <span class="brand-text">Style Cars</span>
+      </a>
+      <p class="copy">© <span id="year"></span> Style Cars. All rights reserved.</p>
+      <ul class="social">
+        <li><a href="#" aria-label="Instagram">IG</a></li>
+        <li><a href="#" aria-label="X">X</a></li>
+        <li><a href="#" aria-label="YouTube">YT</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
